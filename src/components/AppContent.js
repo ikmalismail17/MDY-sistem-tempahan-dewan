@@ -5,7 +5,7 @@ import Navbar from './Navbar';
 
 const AppContent = () => {
     return (
-    <div className="artboard">
+    <div className="container">
         <Navbar />
         <MainSec />
         <Footer />
