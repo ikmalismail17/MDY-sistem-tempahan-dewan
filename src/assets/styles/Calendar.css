@@ -1,0 +1,34 @@
+/* Calendar.css */
+.calendar-container {
+    width: 600px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.rs-calendar-header {
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ccc;
+}
+
+.rs-calendar-table {
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+.rs-calendar-table th,
+.rs-calendar-table td {
+    border: 1px solid #ccc;
+    padding: 5px;
+    text-align: center;
+}
+
+.rs-calendar-table .rs-calendar-cell-selected {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.rs-calendar-today {
+    background-color: #f0f0f0;
+}
