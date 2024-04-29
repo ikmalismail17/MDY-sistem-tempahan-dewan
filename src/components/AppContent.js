@@ -6,6 +6,7 @@ import React from 'react';
 import { Route, Routes, useLocation} from 'react-router-dom';
 import SignIn from './SignIn';
 import AdminDashboard from './AdminDashboard';
+import SignUp from './SignUp';
 
 const AppContent = () => {
     const route = useLocation();
@@ -14,6 +15,9 @@ const AppContent = () => {
     switch(route.pathname){
         case '/signin':
             mainContent = <SignIn/>;
+            break;
+        case '/signup':
+            mainContent = <SignUp/>;
             break;
         case '/admindashboard':
             mainContent = <AdminDashboard />;
