@@ -5,8 +5,7 @@ import Navbar from './Navbar';
 import React from 'react';
 import { Route, Routes, useLocation} from 'react-router-dom';
 import SignIn from './SignIn';
-import AdminDashboard from './AdminDashboard';
-import SignUp from './SignUp';
+import Dashboard from './Dashboard';
 
 const AppContent = () => {
     const route = useLocation();
@@ -16,8 +15,8 @@ const AppContent = () => {
         case '/signin':
             mainContent = <SignIn/>;
             break;
-        case '/admindashboard':
-            mainContent = <AdminDashboard />;
+        case '/dashboard':
+            mainContent = <Dashboard />;
             break;
         default:
             mainContent = (
@@ -33,7 +32,7 @@ const AppContent = () => {
     return (
         <Routes>
           <Route path="/*" element={mainContent} />
-          <Route path="/admindashboard/*" element={mainContent}/>
+          <Route path="/dashboard/*" element={mainContent}/>
         </Routes>
     );
 }

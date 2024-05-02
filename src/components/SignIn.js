@@ -45,7 +45,7 @@ const SignIn = () => {
     }; 
 
     const handleSignIn = () => {
-        navigate('/admindashboard');
+        navigate('/dashboard');
         setEmail("");
         setPassword("");
     }
