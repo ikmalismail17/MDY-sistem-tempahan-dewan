@@ -2,17 +2,14 @@ import React, {useState, useRef} from 'react';
 import Paper from '../components/Paper';
 import { CSSTransition } from 'react-transition-group';
 import "../assets/styles/MainSec.css";
-import "../assets/styles/Calendar.css";
-// import { Calendar } from 'rsuite';
-
-import { Calendar, dayjsLocalizer } from 'react-big-calendar'
-import dayjs from 'dayjs'
-const localizer = dayjsLocalizer(dayjs)
+import { Calendar } from 'rsuite';
+import "rsuite/dist/rsuite.min.css";
 
 const listDewan = [
     {
         title: "Dewan Dato' Madi",
-        img: "https://yan.pimaxis.my/images/Aktiviti/submenu/KEMUDAHAN%20AWAM/GAMBAR%2014-%20DEWAN%20DATO'%20MADI%20YAN.JPG",
+        // img: "https://yan.pimaxis.my/images/Aktiviti/submenu/KEMUDAHAN%20AWAM/GAMBAR%2014-%20DEWAN%20DATO'%20MADI%20YAN.JPG",
+        img: "https://fastly.4sqi.net/img/general/width960/LYBRK3IF2DLIAVDAUAI4FDVZOIOVVVEDDPFKIVKJDCVMZQGC.jpg",
         desc: "Dewan Dato' Madi merupakan dewan yang terletak di berdekatan dengan Majlis Daerah Yan.",
     },
     {
@@ -62,7 +59,7 @@ const HallSec = () => {
                     </div>
                 </CSSTransition>
                 {showList && (
-                <Paper title="Senarai Dewan" custom={["p-10 my-5 "]} customTitle={["text-2xl"]} titleBool={true}>
+                <Paper titleDewan="Senarai Dewan" custom={["p-10 my-7"]} customTitle={["text-xl"]} titleBool={true}>
                     <div className="hero-content flex-col lg:flex-row">
                     <div className={`${listDewan.length > 2 ? 'columns-3':'columns-2'} gap-x-4`}>
                         {listDewan.map((dewan, index) => (
@@ -107,27 +104,27 @@ const HallSecDetail = (props) => {
 
     return (
         <>
-        <Paper title="Kalendar Tempahan" custom={["p-10 my-5 "]} customTitle={["text-2xl"]} titleBool={true}>
-            <button className="btn glass" onClick={handleDetailHall}>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-                <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-4.28 9.22a.75.75 0 0 0 0 1.06l3 3a.75.75 0 1 0 1.06-1.06l-1.72-1.72h5.69a.75.75 0 0 0 0-1.5h-5.69l1.72-1.72a.75.75 0 0 0-1.06-1.06l-3 3Z" clip-rule="evenodd" />
-            </svg>
-            </button>
+        <Paper titleDewan="Kalendar Tempahan" custom={["p-10 my-7"]} customTitle={["text-2xl"]} titleBool={true}>
+            <div className="flex place-content-between">
+                <button className="btn glass mt-1" onClick={handleDetailHall}>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                    <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-4.28 9.22a.75.75 0 0 0 0 1.06l3 3a.75.75 0 1 0 1.06-1.06l-1.72-1.72h5.69a.75.75 0 0 0 0-1.5h-5.69l1.72-1.72a.75.75 0 0 0-1.06-1.06l-3 3Z" clip-rule="evenodd" />
+                </svg>
+                </button>
+                <div role="alert" className="alert alert-info w-auto">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-current shrink-0 w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span>Log masuk dahulu untuk menempah dewan !!</span>
+                </div>
+            </div>
             <div className="hero-content flex-col lg:flex-row">
-            <div className="mockup-browser border border-base-300">
+            <div className="mockup-browser border border-base-300 shadow-lg bg-amber-400">
             <div className="mockup-browser-toolbar">
                 <div className="input">{props.datadetail.title}</div>
             </div>
-            <div className="flex px-2 py-2 bg-base-200">
-                <div className='calendar-container'>
-                <Calendar
-                localizer={localizer}
-                events={""}
-                startAccessor="start"
-                endAccessor="end"
-                style={{ height: 500 }}
-                />
-                </div> 
+            <div className="flex px-2 py-2 bg-blue-600">
+                <div className='border rounded-lg bg-slate-200 w-auto'>
+                    <Calendar bordered />
+                </div>
             </div>
             </div>
             </div>

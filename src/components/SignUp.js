@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-const SignUp = () => {
+const SignUp = (props) => {
     const navigate = useNavigate();
     const [passwordShow, setPasswordShow] = useState(false);
     const [userDetails, setUserDetails] = useState({
@@ -46,29 +46,37 @@ const SignUp = () => {
         ); 
     }; 
 
-    const handleSignUp = () => {
-        navigate('/signin');
+    const clearForm = () => {
         setName("");
         setPhone("");
         setEmail("");
         setPassword("");
         setConfirmPassword("");
     }
+
+    const handleSignUp = () => {
+        navigate('/signin');
+    }
+
+    const handleSignBool = () => {
+        props.bool();
+        clearForm();
+    }
     
     return (
         <div className="h-screen bg-slate-200 flex items-center justify-center">
-            <Paper title="Daftar masuk" custom={["p-10 m-10"]} customTitle={["text-2xl"]} titleBool={true}>
+            <Paper titleDewan="Daftar masuk" custom={["p-10 m-10"]} customTitle={["text-2xl"]} titleBool={true}>
             <div className="pb-3">
-                    <label className="input input-bordered flex items-center gap-2">
-                    Nama
-                    <input 
-                        type="text" 
-                        className="grow" 
-                        value={name}
-                        onChange={(e) => setName(e.target.value)} 
-                        placeholder="Masukkan nama" 
-                    />
-                    </label>
+                <label className="input input-bordered flex items-center gap-2">
+                Nama
+                <input 
+                    type="text" 
+                    className="grow" 
+                    value={name}
+                    onChange={(e) => setName(e.target.value)} 
+                    placeholder="Masukkan nama" 
+                />
+                </label>
                 </div>
                 <div className="pb-3">
                     <label className="input input-bordered flex items-center gap-2">
@@ -138,7 +146,7 @@ const SignUp = () => {
                 <div className="">
                     <p className="italic">
                         Sudah ada akaun? 
-                        <span className="pl-1 text-primary underline"><Link to="/signin">Log Masuk</Link></span>
+                        <span className="pl-1 text-primary underline cursor-pointer" onClick={handleSignBool}>Log Masuk</span>
                     </p>
                 </div>
             </Paper>

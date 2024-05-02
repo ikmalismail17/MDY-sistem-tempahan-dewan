@@ -16,9 +16,6 @@ const AppContent = () => {
         case '/signin':
             mainContent = <SignIn/>;
             break;
-        case '/signup':
-            mainContent = <SignUp/>;
-            break;
         case '/admindashboard':
             mainContent = <AdminDashboard />;
             break;

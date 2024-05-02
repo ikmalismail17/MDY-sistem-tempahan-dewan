@@ -2,6 +2,12 @@ import { Link } from "react-router-dom";
 import HallSec from "./HallSec";
 import React from 'react';
 
+const imagebg = {
+    img: '../assets/images/dewanlestari1.jpg',
+    img: '../assets/images/dewanlestari2.jpg',
+    img: '../assets/images/dewanlestari3.jpg',
+}
+
 const MainSec = () => {
     return (
     <>
