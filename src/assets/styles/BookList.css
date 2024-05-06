@@ -1,22 +1,22 @@
-.slidesign-enter {
-    transform: translateX(-100%);
+.slidebook-enter {
+    transform: translateX(100%);
     opacity: 0;
   }
   
-  .slidesign-enter-active {
+  .slidebook-enter-active {
     transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
     transform: translateX(0);
     opacity: 1;
   }
   
-  .slidesign-exit {
+  .slidebook-exit {
     transform: translateX(0);
     opacity: 1;
   }
   
-  .slidesign-exit-active {
+  .slidebook-exit-active {
     transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-    transform: translateX(100%);
+    transform: translateX(-100%);
     opacity: 0;
   }
   
