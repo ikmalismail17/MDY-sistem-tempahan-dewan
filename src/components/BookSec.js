@@ -4,6 +4,7 @@ import "../assets/styles/MainSec.css";
 import { Calendar, Badge } from 'rsuite';
 import "rsuite/dist/rsuite.min.css";
 import dayjs from 'dayjs';
+import { ModalTempahan } from './Modal';
 
 const listDewan = [
     {
@@ -87,7 +88,7 @@ const HallSec = (props) => {
         <CSSTransition
             in={hallBool}
             timeout={300}
-            classNames="slide"
+            classNames="slidemain"
             nodeRef={nodeRef}
             onEnter={() => setShowList(false)}
             onExited={() => setShowList(true)}
@@ -121,6 +122,7 @@ const HallSec = (props) => {
 }
 
 const HallSecDetail = (props) => {
+    const [selectedDate, setSelectedDate] = useState(null);
 
     const renderCell = (date) => {
         const formattedDate = dayjs(date).format('DD-MM-YYYY'); // Format the current date as "DD-MM-YYYY" for comparison
@@ -149,6 +151,12 @@ const HallSecDetail = (props) => {
         props.hall();
     }
 
+    const handleDateSelect = (date) => {
+        const formattedDate = dayjs(date).format('DD/MM/YYYY');
+        setSelectedDate(formattedDate);
+        document.getElementById('modal_tempahan_dewan').showModal();
+    }
+
     return (
         <>
         <div className="flex place-content-between">
@@ -165,11 +173,12 @@ const HallSecDetail = (props) => {
         </div>
         <div className="flex px-2 py-2 bg-blue-600">
             <div className='border rounded-lg bg-slate-200 w-auto'>
-                <Calendar bordered renderCell={renderCell}/>
+                <Calendar bordered renderCell={renderCell} onSelect={handleDateSelect}/>
             </div>
         </div>
         </div>
         </div>
+        <ModalTempahan date={selectedDate} title={props.datadetail.title}/>
         </>
     );
 }
