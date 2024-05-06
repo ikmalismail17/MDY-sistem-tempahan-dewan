@@ -61,7 +61,7 @@ const SignIn = () => {
             <CSSTransition
                 in={signup}
                 timeout={300}
-                classNames="slide"
+                classNames="slidesign"
                 nodeRef={nodeRef}
                 onEnter={() => setSignin(false)}
                 onExited={() => setSignin(true)}
