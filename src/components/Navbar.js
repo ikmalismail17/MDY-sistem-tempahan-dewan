@@ -18,7 +18,7 @@ const Navbar = () => {
                 <p className="font-bold text-xl text-amber-400">eTempahDewan</p>
             </div>
             <div className="navbar-end last:pr-2">
-                <Link to='/signin'>
+                <Link to='/logmasuk'>
                     <div className='tooltip tooltip-bottom' data-tip="Log Masuk">
                     <button className="btn rounded-full hover:bg-neutral-content">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">

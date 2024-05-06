@@ -55,7 +55,7 @@ const SignUp = (props) => {
     }
 
     const handleSignUp = () => {
-        navigate('/signin');
+        navigate('/logmasuk');
     }
 
     const handleSignBool = () => {
