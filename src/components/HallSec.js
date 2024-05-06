@@ -95,7 +95,7 @@ const HallSec = (props) => {
         <CSSTransition
             in={hallBool}
             timeout={300}
-            classNames="slide"
+            classNames="slidemain"
             nodeRef={nodeRef}
             onEnter={() => setShowList(false)}
             onExited={() => setShowList(true)}
