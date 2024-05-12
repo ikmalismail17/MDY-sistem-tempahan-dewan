@@ -29,9 +29,9 @@ const Profile = () => {
                     <tbody>
                     <tr>
                         <th className="border-2">NAMA</th>
-                        <td className="border-2">
+                        <td className={`border-2 ${updateProfile ? "w-96" : null}`}>
                             {updateProfile ? 
-                                <input type="text" className="input" value={pengguna.namaPengguna} /> :
+                                <input type="text" className="input input-sm w-full max-w-xs" value={pengguna.namaPengguna} /> :
                                 pengguna.namaPengguna.split(' ').map(name => name.charAt(0).toUpperCase() + name.slice(1)).join(' ')
                             }
                         </td>
@@ -40,7 +40,7 @@ const Profile = () => {
                         <th className="border-2">E-MAIL</th>
                         <td className="border-2">
                             {updateProfile?
-                            <input type="email" className="input" value={pengguna.email} /> : 
+                            <input type="email" className="input input-sm w-full max-w-xs" value={pengguna.email} /> : 
                             pengguna.email.toLowerCase()
                             }
                         </td>
@@ -49,7 +49,7 @@ const Profile = () => {
                         <th className="border-2">NO.TELEFON</th>
                         <td className="border-2">
                             {updateProfile ?
-                            <input type="text" className="input" value={pengguna.telefon} /> :
+                            <input type="text" className="input input-sm w-full max-w-xs" value={pengguna.telefon} /> :
                             pengguna.telefon
                             }
                         </td>
