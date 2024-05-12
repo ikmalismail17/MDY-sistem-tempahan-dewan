@@ -10,6 +10,7 @@ import BookSec from './BookSec';
 import BookList from './BookList';
 import DashboardMain from './DashboardMain';
 import Profile from './Profile';
+import DewanDash from './DewanDash';
 
 const AppContent = () => {
     const route = useLocation();
@@ -30,6 +31,9 @@ const AppContent = () => {
             break;
         case '/halaman/senaraitempahan':
             mainContent = <Dashboard content={<BookList/> } titleDashboard="Senarai Tempahan"/>;
+            break;
+        case '/halaman/dewan':
+            mainContent = <Dashboard content={<DewanDash/> } titleDashboard="Dewan"/>;
             break;
         default:
             mainContent = (
