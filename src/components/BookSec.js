@@ -102,7 +102,7 @@ const HallSec = (props) => {
             <div className={`lg:columns-2 gap-x-4 p-4`}>
                 {listDewan.map((dewan,index) => (
                     <div 
-                        className="h-64 card mb-3 lg:card-side bg-base-100 shadow-xl shadow-gray-600 hover:shadow-emerald-600 hover:scale-90 transition-transform duration-300 ease-in-out"
+                        className="h-64 card hover:bg-slate-200 mb-3 lg:card-side bg-base-100 shadow-xl shadow-gray-600 hover:shadow-emerald-600 hover:scale-90 transition-transform duration-300 ease-in-out"
                         key={dewan.title}
                     >
                         <figure className='w-80 overflow-hidden'><img src={dewan.img} alt={dewan.title} className='w-full h-full object-cover'/></figure>
@@ -110,7 +110,12 @@ const HallSec = (props) => {
                         <h2 className="card-title font-bold">{dewan.title.toUpperCase()}</h2>
                         <p>{dewan.desc}</p>
                         <div className="card-actions justify-end">
-                            <button className="btn btn-primary" onClick={() => { handleHallBool(); handleHallDetailData(dewan.title, dewan.img); }}>Lihat Kalendar</button>
+                            <button className="btn glass" onClick={() => { handleHallBool(); handleHallDetailData(dewan.title, dewan.img); }}>
+                                Lihat Kalendar
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                                    <path fill-rule="evenodd" d="M6.75 2.25A.75.75 0 0 1 7.5 3v1.5h9V3A.75.75 0 0 1 18 3v1.5h.75a3 3 0 0 1 3 3v11.25a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V7.5a3 3 0 0 1 3-3H6V3a.75.75 0 0 1 .75-.75Zm13.5 9a1.5 1.5 0 0 0-1.5-1.5H5.25a1.5 1.5 0 0 0-1.5 1.5v7.5a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5v-7.5Z" clip-rule="evenodd" />
+                                </svg>
+                            </button>
                         </div>
                         </div>
                     </div>
@@ -152,9 +157,14 @@ const HallSecDetail = (props) => {
     }
 
     const handleDateSelect = (date) => {
-        const formattedDate = dayjs(date).format('DD/MM/YYYY');
+        const formattedDate = dayjs(date).format('DD-MM-YYYY');
         setSelectedDate(formattedDate);
-        document.getElementById('modal_tempahan_dewan').showModal();
+        if(props.datadetail.bookdetails.find(item => dayjs(item.dateBook).format('DD-MM-YYYY') === formattedDate)){
+            alert('Tarikh ini telah ditempah');
+        }else{
+            document.getElementById('modal_tempahan_dewan').showModal();
+        }
+        
     }
 
     return (

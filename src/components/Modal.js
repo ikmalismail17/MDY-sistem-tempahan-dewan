@@ -123,4 +123,63 @@ export const ModalTempahan = (props) => {
         </>
     )
 }
+export const ModalTambahDewan = () => {
+    const navigate = useNavigate();
+
+    const handleTempahan = () => {
+        navigate('/halaman/dewan')
+    }
+
+    return (
+        <>
+        <dialog id="modal_tambahan_dewan" className="modal modal-bottom sm:modal-middle">
+        <div className="modal-box">
+            <h3 className="font-bold text-lg">TAMBAHAN DEWAN</h3>
+            <p className="py-4">Sila isikan kesemua maklumat yang diperlukan.</p>
+                <div className="pb-1">
+                    <label className="form-control">
+                    <div className="label">
+                    NAMA DEWAN
+                    </div>
+                    <input type="text" placeholder="Masukkan nama dewan" className="input input-bordered w-full max-w-xs"/>
+                    </label>
+                </div>
+                <div className="pb-1">
+                    <label className="form-control">
+                    <div className="label">
+                        ALAMAT
+                    </div>
+                    <input type="text" placeholder="Masukkan alamat dewan" className="input input-bordered w-full max-w-xs" />
+                    </label>
+                </div>
+                <div className="pb-1">
+                    <label className="form-control">
+                    <div className="label">
+                        PENERANGAN
+                    </div>
+                    <textarea className="textarea textarea-bordered h-24" placeholder="Masukkan penerangan dewan"></textarea>
+                    </label>
+                </div>
+                <div className="pb-3">
+                    <label className="form-control">
+                    <div className="label">
+                        <span className="label-text">GAMBAR DEWAN</span>
+                    </div>
+                    <input type="file" className="file-input file-input-bordered w-full max-w-xs" />
+                    </label>
+                </div>
+            <div className="modal-action">
+            <form method="dialog">
+                <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                <div className="space-x-2">
+                    <button className="btn" onClick={handleTempahan}>Hantar</button>
+                    <button className="btn">Batal</button>
+                </div>
+            </form>
+            </div>
+        </div>
+        </dialog>
+        </>
+    )
+}
 
