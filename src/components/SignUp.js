@@ -65,8 +65,8 @@ const SignUp = (props) => {
     
     return (
         <div className="h-screen bg-slate-200 flex items-center justify-center">
-            <Paper titleDewan="Daftar masuk" custom={["p-10 m-10"]} customTitle={["text-2xl"]} titleBool={true}>
-            <div className="pb-3">
+            <Paper titleDewan="Daftar masuk" custom={["p-10 m-10 bg-slate-50"]} customTitle={["text-2xl"]} titleBool={true}>
+                <div className="pb-3">
                 <label className="input input-bordered flex items-center gap-2">
                 Nama
                 <input 

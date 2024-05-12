@@ -72,7 +72,7 @@ const SignIn = () => {
                 </div>
             </CSSTransition>
             {signin && (
-                <Paper titleDewan="Log Masuk" custom={["p-10 m-10"]} customTitle={["text-2xl"]} titleBool={true}>
+                <Paper titleDewan="Log Masuk" custom={["p-10 m-10 bg-slate-50"]} customTitle={["text-2xl"]} titleBool={true}>
                     <div className="pb-3">
                         <label className="input input-bordered focus:border-teal-500 flex items-center gap-2">
                         E-mail

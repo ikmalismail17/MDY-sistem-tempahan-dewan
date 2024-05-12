@@ -22,7 +22,7 @@ const MainSec = () => {
     <div
         className="absolute top-0 left-0 w-full h-full bg-cover bg-no-repeat bg-fixed"
         style={{
-        backgroundImage: 'url(https://daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.jpg)',
+        backgroundImage: 'url(https://source.unsplash.com/random)',
         }}
     ></div>
     <div className="hero-overlay absolute top-0 left-0 w-full h-full bg-black opacity-60"></div>
@@ -38,7 +38,7 @@ const MainSec = () => {
     </div>
     <div className="hero min-h-screen bg-slate-100 hover:bg-slate-200" style={{backgroundImage: imgIndex}}>
         <div className="hero-content flex-col lg:flex-row">
-        <Paper titleDewan={titleDewan ? "Kalendar Tempahan" : "Senarai Dewan"} custom={["p-10 my-7"]} customTitle={["text-xl"]} titleBool={true}>
+        <Paper titleDewan={titleDewan ? "Kalendar Tempahan" : "Senarai Dewan"} custom={["p-10 my-7 bg-slate-50"]} customTitle={["text-xl"]} titleBool={true}>
             <HallSec setImgIndex={handleImgIndex} setTitleDewan={handleTitleDewan}/>
         </Paper>
         </div>
