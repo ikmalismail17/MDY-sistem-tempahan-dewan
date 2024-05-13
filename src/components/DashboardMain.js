@@ -155,7 +155,7 @@ const DashboardMain = () => {
                 </thead>
                 <tbody>
                 {tempahDewan.filter(tempah => tempah.Status === "Ditempah").slice(0,5).map((tempah, index) => (
-                    <tr key={tempah.id} className="hover">
+                    <tr key={index} className="hover">
                         <th>{index + 1}</th>
                         <td>{tempah.Nama}</td>
                         <td>{tempah.Dewan}</td>
