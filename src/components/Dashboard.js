@@ -4,9 +4,11 @@ import Logo from '../assets/images/logoMDY.png';
 import BreadCrumbs from './BreadCrumbs';
 import { ModalLogout } from './Modal';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 
 const Dashboard = (props) => {
+    const [role, setRole] = useState(1);
     const navigate = useNavigate();
 
     const handleProfile = () => {
@@ -34,7 +36,7 @@ const Dashboard = (props) => {
                 <li>
                     <details>
                     <summary>
-                        Admin/User
+                        {role===1 ? "Admin" : "Pengguna"}
                     </summary>
                     <ul className="p-2 bg-base-100 rounded-t-none">
                         <li onClick={handleProfile}>

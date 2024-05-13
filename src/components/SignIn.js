@@ -13,6 +13,7 @@ const SignIn = () => {
     const nodeRef = React.useRef(null);
     const [passwordShow, setPasswordShow] = useState(false);
     const [email, setEmail] = useState("");
+    const [role, setRole] = useState(0);
     const [password, setPassword] = useState("");
     const [userDetails, setUserDetails] = useState({
         email: "",
@@ -39,8 +40,9 @@ const SignIn = () => {
 
     const getIsFormValid = () => { 
         return (
-            validateEmail(email) &&
-            password.length > 0
+            // validateEmail(email) &&
+            // password.length > 0
+            role != 0
         ); 
     }; 
 
@@ -107,9 +109,16 @@ const SignIn = () => {
                         />
                         </label>
                     </div>
+                    <div className="pb-3">
+                    <select className="select select-bordered w-full max-w-xs" onChange={(e)=> {console.log(role); setRole(e.target.value); console.log(role);}}>
+                        <option selected value="0">Role?</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
+                    </div>
                     <div className="flex justify-end pb-5">
                         <button className="btn hover:btn-ghost" onClick={handleSignIn} 
-                        // disabled={!getIsFormValid()}
+                        disabled={!getIsFormValid()}
                         >
                             Log Masuk
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
