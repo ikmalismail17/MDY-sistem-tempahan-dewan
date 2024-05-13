@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import useConsoleLog from "../hooks/useConsole";
 
 export const ModalLogout = () => {
     const navigate = useNavigate();
@@ -123,6 +124,58 @@ export const ModalTempahan = (props) => {
         </>
     )
 }
+
+export const ModalLihatTempahan = (props) => {
+    return (
+        <>
+        <dialog id="modal_lihat_tempahan" className="modal modal-bottom sm:modal-middle">
+        <div className="modal-box">
+            <h3 className="font-bold text-lg">MAKLUMAT TEMPAHAN</h3>
+            <p className="py-4">{`Maklumat tempahan berdasarkan tarikh: ${props.date}`}</p>
+            <div className="overflow-auto">
+            <table className="table border">
+                <tbody>
+                <tr>
+                    <th className="border">Nama</th>
+                    <td className="border">{props.data.nama}</td>
+                </tr>
+                <tr>
+                    <th className="border">E-mail</th>
+                    <td className="border">{props.data.email}</td>
+                </tr>
+                <tr>
+                    <th className="border">Telefon</th>
+                    <td className="border">{props.data.telefon}</td>
+                </tr>
+                <tr>
+                    <th className="border">Status</th>
+                    <td className="border">
+                    <div className={`badge ${
+                        props.data.status === "ditempah" ? "badge-warning" :
+                        props.data.status === "disahkan" ? "badge-success" :
+                        "badge-error"
+                    }`}>
+                        {props.data.status}
+                    </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            </div>
+            <div className="modal-action">
+            <form method="dialog">
+                <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                <div className="space-x-2">
+                    <button className="btn">Tutup</button>
+                </div>
+            </form>
+            </div>
+        </div>
+        </dialog>
+        </>
+    )
+}
+
 export const ModalTambahDewan = () => {
     const navigate = useNavigate();
 
