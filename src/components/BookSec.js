@@ -4,7 +4,8 @@ import "../assets/styles/MainSec.css";
 import { Calendar, Badge } from 'rsuite';
 import "rsuite/dist/rsuite.min.css";
 import dayjs from 'dayjs';
-import { ModalTempahan } from './Modal';
+import { ModalLihatTempahan, ModalTempahan } from './Modal';
+import { useAuth } from '../providers/AuthProviders';
 
 const listDewan = [
     {
@@ -14,20 +15,36 @@ const listDewan = [
         desc: "Dewan Dato' Madi merupakan dewan yang terletak di berdekatan dengan Majlis Daerah Yan.",
         bookdetails: [
             {
+                id: 2,
+                nama: "Afif",
                 dateBook: "4-18-2024",
                 status: "disahkan",
+                email: "afif@gmail.com",
+                telefon: Math.floor(Math.random() * 10000000000)
             },
             {
+                id: 5,
+                nama: "Adam",
                 dateBook: "5-12-2024",
                 status: "ditempah",
+                email: "adam@gmail.com",
+                telefon: Math.floor(Math.random() * 10000000000)
             },
             {
+                id: 6,
+                nama: "Yusuf",
                 dateBook: "5-15-2024",
                 status: "disahkan",
+                email: "yusuf@gmail.com",
+                telefon: Math.floor(Math.random() * 10000000000)
             },
-            {
+            {   
+                id: 7,
+                nama: "Izzat",
                 dateBook: "5-29-2024",
                 status: "ditempah",
+                email: "izzat@gmail.com",
+                telefon: Math.floor(Math.random() * 10000000000)
             },
         ]
     },
@@ -37,20 +54,36 @@ const listDewan = [
         desc: "Dewan Lestari merupakan dewan yang terletak di kawasan Guar Chempedak.",
         bookdetails: [
             {
+                id: 1,
+                nama: "Kamal",
                 dateBook: "4-28-2024",
                 status: "ditempah",
+                email: "kamal@gmail.com",
+                telefon: Math.floor(Math.random() * 10000000000)
             },
             {
+                id: 3,
+                nama: "Zikri",
                 dateBook: "5-16-2024",
                 status: "disahkan",
+                email: "zikri@gmail.com",
+                telefon: Math.floor(Math.random() * 10000000000)
             },
             {
+                id: 4,
+                nama: "Syauqi",
                 dateBook: "5-30-2024",
                 status: "ditempah",
+                email: "syauqi@gmail.com",
+                telefon: Math.floor(Math.random() * 10000000000)
             },
             {
+                id: 8,
+                nama: "Iffat",
                 dateBook: "6-3-2024",
                 status: "ditempah",
+                email: "iffat@gmail.com",
+                telefon: Math.floor(Math.random() * 10000000000)
             },
         ]
     },
@@ -112,8 +145,8 @@ const HallSec = (props) => {
                         <div className="card-actions justify-end">
                             <button className="btn glass" onClick={() => { handleHallBool(); handleHallDetailData(dewan.title, dewan.img); }}>
                                 Lihat Kalendar
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-                                    <path fill-rule="evenodd" d="M6.75 2.25A.75.75 0 0 1 7.5 3v1.5h9V3A.75.75 0 0 1 18 3v1.5h.75a3 3 0 0 1 3 3v11.25a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V7.5a3 3 0 0 1 3-3H6V3a.75.75 0 0 1 .75-.75Zm13.5 9a1.5 1.5 0 0 0-1.5-1.5H5.25a1.5 1.5 0 0 0-1.5 1.5v7.5a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5v-7.5Z" clip-rule="evenodd" />
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+                                    <path fillRule="evenodd" d="M6.75 2.25A.75.75 0 0 1 7.5 3v1.5h9V3A.75.75 0 0 1 18 3v1.5h.75a3 3 0 0 1 3 3v11.25a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V7.5a3 3 0 0 1 3-3H6V3a.75.75 0 0 1 .75-.75Zm13.5 9a1.5 1.5 0 0 0-1.5-1.5H5.25a1.5 1.5 0 0 0-1.5 1.5v7.5a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5v-7.5Z" clipRule="evenodd" />
                                 </svg>
                             </button>
                         </div>
@@ -127,7 +160,9 @@ const HallSec = (props) => {
 }
 
 const HallSecDetail = (props) => {
+    const { id } = useAuth();
     const [selectedDate, setSelectedDate] = useState(null);
+    const [bookData, setBookData] = useState([]);
 
     const renderCell = (date) => {
         const formattedDate = dayjs(date).format('DD-MM-YYYY'); // Format the current date as "DD-MM-YYYY" for comparison
@@ -156,23 +191,34 @@ const HallSecDetail = (props) => {
         props.hall();
     }
 
+    const handleDateSelectAdmin = (date) => {
+        const formattedDate = dayjs(date).format('DD-MM-YYYY');
+        setSelectedDate(formattedDate);
+
+        if(props.datadetail.bookdetails.find(item => dayjs(item.dateBook).format('DD-MM-YYYY') === formattedDate)){
+            setBookData(props.datadetail.bookdetails.find(item => dayjs(item.dateBook).format('DD-MM-YYYY') === formattedDate));
+            document.getElementById('modal_lihat_tempahan').showModal();
+        }else{
+            alert('Tarikh ini tiada tempahan');
+        }
+    }
     const handleDateSelect = (date) => {
         const formattedDate = dayjs(date).format('DD-MM-YYYY');
         setSelectedDate(formattedDate);
+
         if(props.datadetail.bookdetails.find(item => dayjs(item.dateBook).format('DD-MM-YYYY') === formattedDate)){
             alert('Tarikh ini telah ditempah');
         }else{
             document.getElementById('modal_tempahan_dewan').showModal();
         }
-        
     }
 
     return (
         <>
         <div className="flex place-content-between">
             <button className="btn glass mt-1" onClick={() => {handleDetailHall();}}>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-                <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-4.28 9.22a.75.75 0 0 0 0 1.06l3 3a.75.75 0 1 0 1.06-1.06l-1.72-1.72h5.69a.75.75 0 0 0 0-1.5h-5.69l1.72-1.72a.75.75 0 0 0-1.06-1.06l-3 3Z" clip-rule="evenodd" />
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+                <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-4.28 9.22a.75.75 0 0 0 0 1.06l3 3a.75.75 0 1 0 1.06-1.06l-1.72-1.72h5.69a.75.75 0 0 0 0-1.5h-5.69l1.72-1.72a.75.75 0 0 0-1.06-1.06l-3 3Z" clipRule="evenodd" />
             </svg>
             </button>
         </div>
@@ -183,12 +229,22 @@ const HallSecDetail = (props) => {
         </div>
         <div className="flex px-2 py-2 bg-blue-600">
             <div className='border rounded-lg bg-slate-200 w-auto'>
-                <Calendar bordered renderCell={renderCell} onSelect={handleDateSelect}/>
+                {id == 1 ? (
+                    <>
+                    <Calendar bordered renderCell={renderCell} onSelect={handleDateSelectAdmin}/>
+                    </>
+                ):(
+                    <>
+                    <Calendar bordered renderCell={renderCell} onSelect={handleDateSelect}/>
+                    </>
+                )}
+                
             </div>
         </div>
         </div>
         </div>
         <ModalTempahan date={selectedDate} title={props.datadetail.title}/>
+        <ModalLihatTempahan data={bookData} date={selectedDate} title={props.datadetail.title}/>
         </>
     );
 }
