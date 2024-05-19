@@ -6,9 +6,9 @@ function App() {
   return (
     <>
     <AuthProvider>
-    <Router>
-      <AppContent />
-    </Router>
+      <Router>
+        <AppContent />
+      </Router>
     </AuthProvider>
     </>
   );
