@@ -11,6 +11,7 @@ import BookList from './BookList';
 import DashboardMain from './DashboardMain';
 import Profile from './Profile';
 import DewanDash from './DewanDash';
+import SelectIndexProvider from "../providers/SelectIndexProvider";
 
 const AppContent = () => {
     const route = useLocation();
@@ -47,10 +48,12 @@ const AppContent = () => {
     }
 
     return (
+        <SelectIndexProvider>
         <Routes>
           <Route path="/*" element={mainContent} />
           <Route path="/halaman/*" element={mainContent}/>
         </Routes>
+        </SelectIndexProvider>
     );
 }
 
