@@ -90,6 +90,7 @@ const listDewan = [
 ];
 
 const HallSec = (props) => {
+    const { role } = useAuth();
     const [hallBool, setHallBool] = useState(false);
     const [showList, setShowList] = useState(true);
     const nodeRef = useRef(null);
@@ -132,7 +133,18 @@ const HallSec = (props) => {
             </div>
         </CSSTransition>
         {showList && (
-            <div className={`lg:columns-2 gap-x-4 p-4`}>
+            <div className='px-4'>
+            {role != 1 && (
+                <>
+                <div className="badge badge-info gap-2 p-5 w-full rounded-none">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+                    <path fillRule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm8.706-1.442c1.146-.573 2.437.463 2.126 1.706l-.709 2.836.042-.02a.75.75 0 0 1 .67 1.34l-.04.022c-1.147.573-2.438-.463-2.127-1.706l.71-2.836-.042.02a.75.75 0 1 1-.671-1.34l.041-.022ZM12 9a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clipRule="evenodd" />
+                </svg>
+                    Sila ke Pejabat Majlis Daerah Yan untuk melakukan pembayaran
+                </div>
+                </>
+            )}
+            <div className={`lg:columns-2 gap-x-4 py-4`}>
                 {listDewan.map((dewan,index) => (
                     <div 
                         className="h-64 card hover:bg-slate-200 mb-3 lg:card-side bg-base-100 shadow-xl shadow-gray-600 hover:shadow-emerald-600 hover:scale-90 transition-transform duration-300 ease-in-out"
@@ -154,13 +166,14 @@ const HallSec = (props) => {
                     </div>
                 ))}
             </div>
+            </div>
         )}
         </>
     );
 }
 
 const HallSecDetail = (props) => {
-    const { id } = useAuth();
+    const { role } = useAuth();
     const [selectedDate, setSelectedDate] = useState(null);
     const [bookData, setBookData] = useState([]);
 
@@ -215,12 +228,22 @@ const HallSecDetail = (props) => {
 
     return (
         <>
-        <div className="flex place-content-between">
-            <button className="btn glass mt-1" onClick={() => {handleDetailHall();}}>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+        <div className="flex">
+            <button className="btn glass mt-1 h-full" onClick={() => {handleDetailHall();}}>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
                 <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-4.28 9.22a.75.75 0 0 0 0 1.06l3 3a.75.75 0 1 0 1.06-1.06l-1.72-1.72h5.69a.75.75 0 0 0 0-1.5h-5.69l1.72-1.72a.75.75 0 0 0-1.06-1.06l-3 3Z" clipRule="evenodd" />
             </svg>
             </button>
+            {role != 1 && (
+                <>
+                <div className="badge badge-info gap-2 p-4 w-full h-full rounded-none">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+                    <path fillRule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm8.706-1.442c1.146-.573 2.437.463 2.126 1.706l-.709 2.836.042-.02a.75.75 0 0 1 .67 1.34l-.04.022c-1.147.573-2.438-.463-2.127-1.706l.71-2.836-.042.02a.75.75 0 1 1-.671-1.34l.041-.022ZM12 9a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clipRule="evenodd" />
+                </svg>
+                    Sila ke Pejabat Majlis Daerah Yan untuk melakukan pembayaran
+                </div>
+                </>
+            )}
         </div>
         <div className="hero-content flex-col lg:flex-row">
         <div className="mockup-browser border border-base-300 shadow-lg bg-amber-400">
@@ -229,7 +252,7 @@ const HallSecDetail = (props) => {
         </div>
         <div className="flex px-2 py-2 bg-blue-600">
             <div className='border rounded-lg bg-slate-200 w-auto'>
-                {id == 1 ? (
+                {role == 1 ? (
                     <>
                     <Calendar bordered renderCell={renderCell} onSelect={handleDateSelectAdmin}/>
                     </>

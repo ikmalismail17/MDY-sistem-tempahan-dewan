@@ -72,7 +72,7 @@ const tempahDewan = [
     },
 ]
 const BookList = () => {
-    const {id} = useAuth();
+    const {role} = useAuth();
     const [allList, setAllList] = useState(true);
     const [listDetail, setListDetail] = useState(false);
     const nodeRef = useRef(null);
@@ -103,10 +103,25 @@ const BookList = () => {
         </CSSTransition>
         {allList && (
             <>
-            <div className="mb-3">
-                <DatePicker oneTap style={{ width: 200 }} placeholder="Select Date" size="lg"/>
+            {role != 1 && (
+                <>
+                <div className="badge badge-info gap-2 p-5 w-full rounded-none mb-3">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+                    <path fillRule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm8.706-1.442c1.146-.573 2.437.463 2.126 1.706l-.709 2.836.042-.02a.75.75 0 0 1 .67 1.34l-.04.022c-1.147.573-2.438-.463-2.127-1.706l.71-2.836-.042.02a.75.75 0 1 1-.671-1.34l.041-.022ZM12 9a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clipRule="evenodd" />
+                </svg>
+                    Sila ke Pejabat Majlis Daerah Yan untuk melakukan pembayaran
+                </div>
+                </>
+            )}
+            <div className="flex gap-2">
+                <select className="select select-bordered w-full max-w-xs">
+                    <option value="0">Pilih Dewan</option>
+                    <option value="datomadi">Dewan Dato' Madi</option>
+                    <option value="lestari">Dewan Lestari</option>
+                </select>
+                <DatePicker oneTap style={{ width: 200 }} placeholder="Select Date" size="lg" className="h-full"/>
             </div>
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto mt-3">
             <table className="table">
                 <thead className="bg-slate-300">
                 <tr>
@@ -119,12 +134,12 @@ const BookList = () => {
                 </tr>
                 </thead>
                 <tbody>
-                {id == 1 ? (
+                {role == 1 ? (
                     <>
                     {tempahDewan.map((tempah, index) => (
                         <tr key={tempah.id*index} className="hover">
                             <th>{index + 1}</th>
-                            <td>{tempah.Nama} (Anda)</td>
+                            <td>{tempah.Nama}</td>
                             <td>{tempah.Dewan}</td>
                             <td>{tempah.Tarikh}</td>
                             <td>

@@ -5,6 +5,8 @@ const AuthContext = createContext();
 const AuthProvider = ({children}) => {
     const storedToken = localStorage.getItem('token');
     const storedId = localStorage.getItem('id');
+    const storedRole = localStorage.getItem('role');
+    const [role, setRoleState] = useState(storedRole);
     const [token, setTokenState] = useState(storedToken);
     const [id, setIdState] = useState(storedId);
 
@@ -26,15 +28,26 @@ const AuthProvider = ({children}) => {
         }
     }
 
+    const setRole = (newRole) => {
+        setRoleState(newRole);
+        if (newRole) {
+            localStorage.setItem('role', newRole);
+        } else {
+            localStorage.removeItem('role');
+        }
+    }
+
     const logout = () => {
         setToken(null);
         setId(null);
+        setRole(null);
         localStorage.removeItem('token');
         localStorage.removeItem('id');
+        localStorage.removeItem('role');
     }
 
     return (
-        <AuthContext.Provider value={{ token, id, setToken, setId, logout }}>
+        <AuthContext.Provider value={{ token, id, role, setToken, setId, setRole, logout }}>
             {children}
         </AuthContext.Provider>
     )
