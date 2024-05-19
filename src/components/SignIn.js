@@ -14,8 +14,8 @@ const SignIn = () => {
     const nodeRef = React.useRef(null);
     const [passwordShow, setPasswordShow] = useState(false);
     const [email, setEmail] = useState("");
-    const [role, setRole] = useState(0);
-    const { setId } = useAuth();
+    const [role, setRoleTemp] = useState(0);
+    const { setRole } = useAuth();
     const [password, setPassword] = useState("");
     const [userDetails, setUserDetails] = useState({
         email: "",
@@ -49,15 +49,15 @@ const SignIn = () => {
     };
 
     const handleRoleState = (e) => {
-        setRole(e.target.value);
+        setRoleTemp(e.target.value);
     }
 
     const handleSignIn = () => {
-        setId(role);
+        setRole(role);
         navigate('/halaman');
         setEmail("");
         setPassword("");
-        setRole(0);
+        setRoleTemp(0);
     }
     return (
         <div className="h-screen bg-slate-200 flex items-center justify-center">
