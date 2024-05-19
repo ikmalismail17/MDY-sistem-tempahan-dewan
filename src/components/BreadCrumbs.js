@@ -44,6 +44,8 @@ const BreadCrumbs = (props) => {
                 </li>
             )
             break;
+        default:
+            bcContent = null
     }
 
     return (
