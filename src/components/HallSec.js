@@ -4,6 +4,8 @@ import "../assets/styles/MainSec.css";
 import { Calendar, Badge } from 'rsuite';
 import "rsuite/dist/rsuite.min.css";
 import dayjs from 'dayjs';
+import useFetchData from "../hooks/useFetchData";
+import useConsole from "../hooks/useConsole";
 
 const listDewan = [
     {
@@ -56,6 +58,7 @@ const listDewan = [
 ];
 
 const HallSec = (props) => {
+    const {data, loading, error} = useFetchData('http://localhost:8080/dewandisplay');
     const [hallBool, setHallBool] = useState(false);
     const [showList, setShowList] = useState(true);
     const nodeRef = useRef(null);
@@ -64,6 +67,8 @@ const HallSec = (props) => {
         img: "",
         bookdetails: []
     });
+
+    useConsole("Data:",data)
 
     const handleHallDetailData = (title, img) => {
         setHallDetail({

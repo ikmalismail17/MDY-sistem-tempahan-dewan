@@ -153,7 +153,7 @@ const BookList = () => {
                             </td>
                             <td className="text-center">
                                 <kbd className="cursor-pointer kbd" onClick={() => { handleBookDetail(); handleBookData(tempah);}}>
-                                    Lanjutan
+                                    Info Penuh
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
                                     <path fillRule="evenodd" d="M4.5 12a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm6 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm6 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Z" clipRule="evenodd" />
                                     </svg>
@@ -208,33 +208,33 @@ const BookListDetail = (props) => {
             </button>
             <p className="text-xl font-bold">MAKLUMAT TEMPAHAN</p>
         </div>
-        <Paper titleDewan="" custom={["px-10 pt-10 pb-5 my-3 bg-gray-300 space-y-4"]} customTitle={["text-2xl"]} titleBool={false}>
+        <Paper titleDewan="" custom={["px-10 pt-10 pb-5 my-3 bg-slate-200 space-y-4"]} customTitle={["text-2xl"]} titleBool={false}>
             <div className="overflow-auto">
-            <table className="table border-4 border-separate border-slate-500">
+            <table className="table">
                 <tbody>
                 <tr>
-                    <th className="border-2 border-slate-500">NAMA</th>
-                    <td className="border-2 border-slate-500">{props.bookData.Nama}</td>
+                    <th className="border-4 border-slate-500">NAMA</th>
+                    <td className="border-4 border-slate-500">{props.bookData.Nama}</td>
                 </tr>
                 <tr>
-                    <th className="border-2 border-slate-500">E-MAIL</th>
-                    <td className="border-2 border-slate-500">{props.bookData.Email}</td>
+                    <th className="border-4 border-slate-500">E-MAIL</th>
+                    <td className="border-4 border-slate-500">{props.bookData.Email}</td>
                 </tr>
                 <tr>
-                    <th className="border-2 border-slate-500">NO.TELEFON</th>
-                    <td className="border-2 border-slate-500">{props.bookData.Telefon}</td>
+                    <th className="border-4 border-slate-500">NO.TELEFON</th>
+                    <td className="border-4 border-slate-500">{props.bookData.Telefon}</td>
                 </tr>
                 <tr>
-                    <th className="border-2 border-slate-500">DEWAN</th>
-                    <td className="border-2 border-slate-500">{props.bookData.Dewan}</td>
+                    <th className="border-4 border-slate-500">DEWAN</th>
+                    <td className="border-4 border-slate-500">{props.bookData.Dewan}</td>
                 </tr>
                 <tr>
-                    <th className="border-2 border-slate-500">TARIKH</th>
-                    <td className="border-2 border-slate-500">{props.bookData.Tarikh}</td>
+                    <th className="border-4 border-slate-500">TARIKH</th>
+                    <td className="border-4 border-slate-500">{props.bookData.Tarikh}</td>
                 </tr>
                 <tr>
-                    <th className="border-2 border-slate-500">STATUS</th>
-                    <td className="border-2 border-slate-500">
+                    <th className="border-4 border-slate-500">STATUS</th>
+                    <td className="border-4 border-slate-500">
                     <div className={`badge ${
                         props.bookData.Status === "Ditempah" ? "badge-warning" :
                         props.bookData.Status === "Disahkan" ? "badge-success" :
