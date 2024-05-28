@@ -2,9 +2,11 @@ import React, { useState, useRef } from "react";
 import { CSSTransition } from "react-transition-group";
 import "../assets/styles/BookList.css";
 import Paper from "./Paper";
-import { ModalAccept, ModalReject } from "./Modal";
+import { ModalAccept, ModalReject, ModalRevert } from "./Modal";
 import { useAuth } from "../providers/AuthProviders";
 import { DatePicker } from 'rsuite';
+import useFetchData from "../hooks/useFetchData";
+import axios from "axios";
 
 const tempahDewan = [
     {
@@ -71,7 +73,51 @@ const tempahDewan = [
         Telefon: Math.floor(Math.random() * 10000000000)
     },
 ]
+// const tempahDewan = [
+//     {
+//         "order_id": 1,
+//         "order_desc": "",
+//         "order_explain": null,
+//         "order_date": "2024-05-05",
+//         "dewan_order_date": "2024-05-10",
+//         "order_status": "Ditempah",
+//         "user": {
+//         "user_id": 1,
+//         "user_name": "Kamal Adli",
+//         "user_email": "kamaladli@gmail.com",
+//         "user_phone": "0135728839"
+//         },
+//         "dewan": {
+//         "dewan_id": 1,
+//         "dewan_name": "Dewan Dato' Madi",
+//         "dewan_desc": "Dewan Dato' Madi merupakan dewan yang terletak berdekatan dengan Majlis Daerah Yan.",
+//         "dewan_location": "7, Jalan Pantai Murni, Kampung Pantai Murni, 06900 Yan, Kedah"
+//         }
+//     },
+//     {
+//         "order_id": 2,
+//         "order_desc": "",
+//         "order_explain": null,
+//         "order_date": "2024-05-17",
+//         "dewan_order_date": "2024-05-30",
+//         "order_status": "Disahkan",
+//         "user": {
+//         "user_id": 1,
+//         "user_name": "Kamal Adli",
+//         "user_email": "kamaladli@gmail.com",
+//         "user_phone": "0135728839"
+//         },
+//         "dewan": {
+//         "dewan_id": 3,
+//         "dewan_name": "Dewan Lestari",
+//         "dewan_desc": "Dewan Lestari merupakan dewan yang terletak di kawasan Guar Chempedak dan juga sering dipanggil Dewan Serbaguna.",
+//         "dewan_location": "Guar Chempedak, 08300 Guar Chempedak, Kedah"
+//         }
+//     }
+// ]
+
 const BookList = () => {
+    // const { data, loading, error } = useFetchData('http://localhost:8080/orderdisplay');
     const {role} = useAuth();
     const [allList, setAllList] = useState(true);
     const [listDetail, setListDetail] = useState(false);
@@ -194,6 +240,19 @@ const BookList = () => {
 
 const BookListDetail = (props) => {
 
+    //axios post tempahan request
+    const handleAccept = async (id) => {
+        try{
+            const res = await axios.post('http://localhost:8080/orderaccept', 
+            {
+                
+            });
+        }catch(e){
+
+        }
+
+    };
+
     const handleBookDetail = () => {
         props.book();
     }
@@ -248,15 +307,22 @@ const BookListDetail = (props) => {
             </table>
             </div>
             <div className="flex justify-end">
-                {props.bookData.Status === "Ditempah" && (
+                {props.bookData.Status === "Ditempah" ? (
                 <div className="join">
                     <button className="btn btn-error join-item" onClick={()=>document.getElementById('modal_reject_tempahan').showModal()}>Tolak</button>
                     <button className="btn btn-success join-item" onClick={()=>document.getElementById('modal_accept_tempahan').showModal()}>Sahkan</button>
                 </div>
+                ): props.bookData.Status === "Ditolak" && (
+                    <button className="btn btn-accent" onClick={()=>document.getElementById('modal_revert_tempahan').showModal()}>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                            <path fill-rule="evenodd" d="M4.755 10.059a7.5 7.5 0 0 1 12.548-3.364l1.903 1.903h-3.183a.75.75 0 1 0 0 1.5h4.992a.75.75 0 0 0 .75-.75V4.356a.75.75 0 0 0-1.5 0v3.18l-1.9-1.9A9 9 0 0 0 3.306 9.67a.75.75 0 1 0 1.45.388Zm15.408 3.352a.75.75 0 0 0-.919.53 7.5 7.5 0 0 1-12.548 3.364l-1.902-1.903h3.183a.75.75 0 0 0 0-1.5H2.984a.75.75 0 0 0-.75.75v4.992a.75.75 0 0 0 1.5 0v-3.18l1.9 1.9a9 9 0 0 0 15.059-4.035.75.75 0 0 0-.53-.918Z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
                 )}
             </div>
             <ModalAccept/>
             <ModalReject/>
+            <ModalRevert/>
         </Paper>
         </>
     )
