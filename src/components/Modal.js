@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import useConsoleLog from "../hooks/useConsole";
+import { useState } from "react";
 
 export const ModalLogout = () => {
     const navigate = useNavigate();
@@ -83,7 +84,36 @@ export const ModalAccept = () => {
     )
 }
 
+export const ModalRevert = () => {
+    const navigate = useNavigate();
+
+    const handleRevert = () => {
+        navigate('/halaman/senaraitempahan')
+    }
+
+    return (
+        <>
+        <dialog id="modal_revert_tempahan" className="modal modal-bottom sm:modal-middle">
+        <div className="modal-box bg-slate-300">
+            <h3 className="font-bold text-lg">KEMBALIKAN TEMPAHAN</h3>
+            <p className="py-4">Adakah anda pasti untuk mengembalikan tempahan ini?</p>
+            <div className="modal-action">
+            <form method="dialog">
+                <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                <div className="space-x-2">
+                    <button className="btn" onClick={handleRevert}>Ya</button>
+                    <button className="btn">Batal</button>
+                </div>
+            </form>
+            </div>
+        </div>
+        </dialog>
+        </>
+    )
+}
+
 export const ModalTempahan = (props) => {
+    const [purpose, setPurpose] = useState("");
     const navigate = useNavigate();
 
     const handleTempahan = () => {
@@ -107,6 +137,17 @@ export const ModalTempahan = (props) => {
                     <th className="border">Tarikh</th>
                     <td className="border">{props.date}</td>
                 </tr>
+                <tr>
+                    <th className="border">Tujuan</th>
+                    <td className="border">
+                        <input 
+                            type="text" 
+                            placeholder="Masukkan tujuan tempahan" 
+                            className="input input-bordered w-full max-w-xs"
+                            onChange={(e)=> setPurpose(e.target.value)}
+                        />
+                    </td>
+                </tr>
                 </tbody>
             </table>
             </div>
@@ -114,7 +155,7 @@ export const ModalTempahan = (props) => {
             <form method="dialog">
                 <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                 <div className="space-x-2">
-                    <button className="btn" onClick={handleTempahan}>Ya</button>
+                    <button className="btn" onClick={handleTempahan} disabled={!purpose}>Ya</button>
                     <button className="btn">Batal</button>
                 </div>
             </form>
@@ -208,9 +249,9 @@ export const ModalTambahDewan = () => {
                 <div className="pb-1">
                     <label className="form-control">
                     <div className="label">
-                        PENERANGAN
+                        INFO DEWAN
                     </div>
-                    <textarea className="textarea textarea-bordered h-24" placeholder="Masukkan penerangan dewan"></textarea>
+                    <textarea className="textarea textarea-bordered h-24" placeholder="Masukkan maklumat dewan"></textarea>
                     </label>
                 </div>
                 <div className="pb-3">
