@@ -6,6 +6,7 @@ import "rsuite/dist/rsuite.min.css";
 import dayjs from 'dayjs';
 import { ModalLihatTempahan, ModalTempahan } from './Modal';
 import { useAuth } from '../providers/AuthProviders';
+import useFetchData from '../hooks/useFetchData';
 
 const listDewan = [
     {
@@ -90,6 +91,7 @@ const listDewan = [
 ];
 
 const HallSec = (props) => {
+    // const { data, loading, error } = useFetchData('http://localhost:8080/dewandisplay');
     const { role } = useAuth();
     const [hallBool, setHallBool] = useState(false);
     const [showList, setShowList] = useState(true);

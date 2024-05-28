@@ -2,6 +2,7 @@ import React from 'react';
 import Paper from './Paper';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../providers/AuthProviders';
+import useFetchData from '../hooks/useFetchData';
 
 const tempahDewan = [
     {
@@ -115,6 +116,7 @@ const tempahDewan = [
 ]
 
 const DashboardMain = () => {
+    // const { data, loading, error } = useFetchData('http://localhost:8080/orderdisplay');
     const { role } = useAuth();
     return (
         <>

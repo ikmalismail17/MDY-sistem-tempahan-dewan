@@ -58,7 +58,7 @@ const listDewan = [
 ];
 
 const HallSec = (props) => {
-    const {data, loading, error} = useFetchData('http://localhost:8080/dewandisplay');
+    // const {data, loading, error} = useFetchData('http://localhost:8080/dewandisplay');
     const [hallBool, setHallBool] = useState(false);
     const [showList, setShowList] = useState(true);
     const nodeRef = useRef(null);
@@ -68,7 +68,7 @@ const HallSec = (props) => {
         bookdetails: []
     });
 
-    useConsole("Data:",data)
+    // useConsole("Data:",data)
 
     const handleHallDetailData = (title, img) => {
         setHallDetail({
