@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import useConsoleLog from "../hooks/useConsole";
 import { useState } from "react";
+import axios from 'axios';
+import { set } from "rsuite/esm/utils/dateUtils";
 
 export const ModalLogout = () => {
     const navigate = useNavigate();
@@ -33,6 +35,15 @@ export const ModalReject = () => {
     const navigate = useNavigate();
 
     const handleReject = () => {
+        // try{
+        //     const res = axios.put(`http://localhost:8080/tempahdewan/${props.id}`, {
+        //         status: "Ditolak"
+        //     })
+        //     console.log(res);
+        //     navigate('/halaman/senaraitempahan')
+        // }catch(e){
+        //     throw e;
+        // }
         navigate('/halaman/senaraitempahan')
     }
     return (
@@ -56,10 +67,19 @@ export const ModalReject = () => {
     )
 }
 
-export const ModalAccept = () => {
+export const ModalAccept = (props) => {
     const navigate = useNavigate();
 
     const handleAccept = () => {
+        // try{
+        //     const res = axios.put(`http://localhost:8080/tempahdewan/${props.id}`, {
+        //         status: "Disahkan"
+        //     })
+        //     console.log(res);
+        //     navigate('/halaman/senaraitempahan')
+        // }catch(e){
+        //     throw e;
+        // }
         navigate('/halaman/senaraitempahan')
     }
 
@@ -84,10 +104,20 @@ export const ModalAccept = () => {
     )
 }
 
-export const ModalRevert = () => {
+export const ModalRevert = (props) => {
     const navigate = useNavigate();
 
     const handleRevert = () => {
+        // try{
+        //     const res = axios.put(`http://localhost:8080/tempahdewan/${props.id}`, {
+        //         status: "Ditempah"
+        //     })
+        //     console.log(res);
+        //     navigate('/halaman/senaraitempahan')
+        // }catch(e){
+        //     throw e;
+        // }
+
         navigate('/halaman/senaraitempahan')
     }
 
@@ -113,11 +143,32 @@ export const ModalRevert = () => {
 }
 
 export const ModalTempahan = (props) => {
-    const [purpose, setPurpose] = useState("");
+    const [purpose, setPurpose] = useState(0);
     const navigate = useNavigate();
+    const [catatan, setCatatan] = useState("");
 
     const handleTempahan = () => {
+
+        // try{
+        //     const res = await axios.post(`http://localhost:8080/tempahdewan/${props.user_id}`,
+        //         {
+        //             dewanID: props.dewan_id,
+        //             tarikh: props.date,
+        //             purpose: purpose,
+        //             catatan: catatan
+        //         }
+        //     )
+        //     console.log(res);
+        //     navigate('/halaman/kalendartempahan')
+        // }catch(e){
+        //     throw e;
+        // }
+        setPurpose(0);
+        setCatatan("");
         navigate('/halaman/kalendartempahan')
+    }
+    const handlePurposeState = (e) => {
+        setPurpose(e.target.value);
     }
 
     return (
@@ -131,7 +182,7 @@ export const ModalTempahan = (props) => {
                 <tbody>
                 <tr>
                     <th className="border">Dewan</th>
-                    <td className="border">{props.title}</td>
+                    <td className="border">{props.name}</td>
                 </tr>
                 <tr>
                     <th className="border">Tarikh</th>
@@ -140,11 +191,23 @@ export const ModalTempahan = (props) => {
                 <tr>
                     <th className="border">Tujuan</th>
                     <td className="border">
+                    <select className="select select-bordered w-full max-w-xs" onChange={handlePurposeState}>
+                        <option value="0">Kategori...</option>
+                        {props.name === "Dewan Lestari" && <option value="1">Perkahwinan</option>}
+                        <option value="2">Persendirian/Swasta</option>
+                        <option value="3">Kerajaan</option>
+                        <option value="4">Kakitangan MDY (masih berkhidmat)</option>
+                    </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th className="border">Catatan</th>
+                    <td className="border">
                         <input 
-                            type="text" 
-                            placeholder="Masukkan tujuan tempahan" 
+                            type="text"
+                            placeholder="Masukkan catatan tempahan" 
                             className="input input-bordered w-full max-w-xs"
-                            onChange={(e)=> setPurpose(e.target.value)}
+                            onChange={(e)=> setCatatan(e.target.value)}
                         />
                     </td>
                 </tr>
@@ -155,7 +218,7 @@ export const ModalTempahan = (props) => {
             <form method="dialog">
                 <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                 <div className="space-x-2">
-                    <button className="btn" onClick={handleTempahan} disabled={!purpose}>Ya</button>
+                    <button className="btn" onClick={handleTempahan} disabled={!catatan || purpose === "0"}>Ya</button>
                     <button className="btn">Batal</button>
                 </div>
             </form>
@@ -218,9 +281,25 @@ export const ModalLihatTempahan = (props) => {
 }
 
 export const ModalTambahDewan = () => {
+    const [name, setName] = useState("");
+    const [address, setAddress] = useState("");
+    const [info, setInfo] = useState("");
+    const [image, setImage] = useState("");
     const navigate = useNavigate();
 
     const handleTempahan = () => {
+        // try{
+        //     const res = axios.post(`http://localhost:8080/dewanadd`, {
+        //         name: name,
+        //         address: address,
+        //         info: info,
+        //         image: image
+        //     })
+        //     console.log(res);
+        //     navigate('/halaman/dewan')
+        // }catch(e){
+        //     throw e;
+        // }
         navigate('/halaman/dewan')
     }
 
@@ -235,7 +314,12 @@ export const ModalTambahDewan = () => {
                     <div className="label">
                     NAMA DEWAN
                     </div>
-                    <input type="text" placeholder="Masukkan nama dewan" className="input input-bordered w-full max-w-xs"/>
+                    <input 
+                        type="text" 
+                        placeholder="Masukkan nama dewan"
+                        value={name}
+                        className="input input-bordered w-full max-w-xs" 
+                        onChange={(e)=> setName(e.target.value)}/>
                     </label>
                 </div>
                 <div className="pb-1">
@@ -243,7 +327,12 @@ export const ModalTambahDewan = () => {
                     <div className="label">
                         ALAMAT
                     </div>
-                    <input type="text" placeholder="Masukkan alamat dewan" className="input input-bordered w-full max-w-xs" />
+                    <input 
+                        type="text" 
+                        placeholder="Masukkan alamat dewan" 
+                        value={address}
+                        className="input input-bordered w-full max-w-xs" 
+                        onChange={(e)=> setAddress(e.target.value)}/>
                     </label>
                 </div>
                 <div className="pb-1">
@@ -251,7 +340,12 @@ export const ModalTambahDewan = () => {
                     <div className="label">
                         INFO DEWAN
                     </div>
-                    <textarea className="textarea textarea-bordered h-24" placeholder="Masukkan maklumat dewan"></textarea>
+                    <textarea 
+                        className="textarea textarea-bordered h-24" 
+                        value={info}
+                        placeholder="Masukkan maklumat dewan" 
+                        onChange={(e)=> setInfo(e.target.value)}>
+                    </textarea>
                     </label>
                 </div>
                 <div className="pb-3">
@@ -259,7 +353,11 @@ export const ModalTambahDewan = () => {
                     <div className="label">
                         <span className="label-text">GAMBAR DEWAN</span>
                     </div>
-                    <input type="file" className="file-input file-input-bordered w-full max-w-xs" />
+                    <input 
+                        type="file"
+                        value={image}
+                        className="file-input file-input-bordered w-full max-w-xs" 
+                        onChange={(e)=> setImage(e.target.value)}/>
                     </label>
                 </div>
             <div className="modal-action">
