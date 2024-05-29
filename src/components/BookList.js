@@ -240,19 +240,6 @@ const BookList = () => {
 
 const BookListDetail = (props) => {
 
-    //axios post tempahan request
-    const handleAccept = async (id) => {
-        try{
-            const res = await axios.post('http://localhost:8080/orderaccept', 
-            {
-                
-            });
-        }catch(e){
-
-        }
-
-    };
-
     const handleBookDetail = () => {
         props.book();
     }
@@ -320,9 +307,9 @@ const BookListDetail = (props) => {
                     </button>
                 )}
             </div>
-            <ModalAccept/>
-            <ModalReject/>
-            <ModalRevert/>
+            <ModalAccept id={props.bookData.id}/>
+            <ModalReject id={props.bookData.id}/>
+            <ModalRevert id={props.bookData.id}/>
         </Paper>
         </>
     )
