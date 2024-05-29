@@ -3,6 +3,8 @@ import Paper from './Paper';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import LogoETD2 from '../assets/images/logoETD2.jpg';
+import { type } from '@testing-library/user-event/dist/type';
 
 const SignUp = (props) => {
     const navigate = useNavigate();
@@ -16,6 +18,7 @@ const SignUp = (props) => {
     })
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
+    const [ic, setIC] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -42,13 +45,15 @@ const SignUp = (props) => {
             name && phone &&
             validateEmail(email) && 
             password === confirmPassword &&
-            password.length > 0
-        ); 
-    }; 
+            password.length > 0 &&
+            (!isNaN(ic) && ic.length === 12)
+        );
+    };
 
     const clearForm = () => {
         setName("");
         setPhone("");
+        setIC("");
         setEmail("");
         setPassword("");
         setConfirmPassword("");
@@ -64,7 +69,9 @@ const SignUp = (props) => {
     }
     
     return (
-        <div className="h-screen bg-slate-200 flex items-center justify-center">
+        <div 
+            className="h-screen flex items-center justify-center"
+        >
             <Paper titleDewan="Daftar masuk" custom={["p-10 m-10 bg-slate-50"]} customTitle={["text-2xl"]} titleBool={true}>
                 <div className="pb-3">
                 <label className="input input-bordered flex items-center gap-2">
@@ -74,9 +81,21 @@ const SignUp = (props) => {
                     className="grow" 
                     value={name}
                     onChange={(e) => setName(e.target.value)} 
-                    placeholder="Masukkan nama" 
+                    placeholder="Masukkan nama penuh" 
                 />
                 </label>
+                </div>
+                <div className="pb-3">
+                    <label className="input input-bordered flex items-center gap-2">
+                    Kad Pengenalan
+                    <input 
+                        type="int" 
+                        className="grow" 
+                        value={ic}
+                        onChange={(e) => setIC(e.target.value)} 
+                        placeholder="Masukkan tanpa '-'" 
+                    />
+                    </label>
                 </div>
                 <div className="pb-3">
                     <label className="input input-bordered flex items-center gap-2">
@@ -86,7 +105,7 @@ const SignUp = (props) => {
                         className="grow" 
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)} 
-                        placeholder="Masukkan nombor telefon" 
+                        placeholder="Masukkan no. telefon" 
                     />
                     </label>
                 </div>
@@ -98,7 +117,7 @@ const SignUp = (props) => {
                         className="grow" 
                         value={email}
                         onChange={(e) => setEmail(e.target.value)} 
-                        placeholder="Masukkan e-mail" 
+                        placeholder="example@example.com" 
                     />
                     </label>
                 </div>

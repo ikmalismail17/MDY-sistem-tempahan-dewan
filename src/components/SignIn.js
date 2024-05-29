@@ -6,6 +6,7 @@ import "../assets/styles/SignPage.css";
 import SignUp from "./SignUp";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../providers/AuthProviders";
+import LogoETD2 from '../assets/images/logoETD2.jpg';
 
 const SignIn = () => {
     const navigate = useNavigate();
@@ -13,7 +14,7 @@ const SignIn = () => {
     const [signup, setSignup] = useState(false);
     const nodeRef = React.useRef(null);
     const [passwordShow, setPasswordShow] = useState(false);
-    const [email, setEmail] = useState("");
+    const [ic, setIC] = useState("");
     const [role, setRoleTemp] = useState(0);
     const { setRole } = useAuth();
     const [password, setPassword] = useState("");
@@ -24,7 +25,7 @@ const SignIn = () => {
 
     const handleSignBool = () => {
         setSignup(!signup);
-        setEmail("");
+        setIC("");
         setPassword("");
     }
 
@@ -55,12 +56,19 @@ const SignIn = () => {
     const handleSignIn = () => {
         setRole(role);
         navigate('/halaman');
-        setEmail("");
+        setIC("");
         setPassword("");
         setRoleTemp(0);
     }
     return (
-        <div className="h-screen bg-slate-200 flex items-center justify-center">
+        <div 
+            className="h-screen bg-slate-200 flex items-center justify-center"
+            style={{
+                backgroundImage: `url(${LogoETD2})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                }}
+        >
             {/* <Link to="/">
             <button className="btn glass">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
@@ -85,13 +93,13 @@ const SignIn = () => {
                 <Paper titleDewan="Log Masuk" custom={["p-10 m-10 bg-slate-50"]} customTitle={["text-2xl"]} titleBool={true}>
                     <div className="pb-3">
                         <label className="input input-bordered focus:border-teal-500 flex items-center gap-2">
-                        E-mail
+                        Kad Pengenalan
                         <input 
-                            type="email" 
+                            type="int" 
                             className="grow"
-                            value={email}
-                            placeholder="Masukkan e-mail"
-                            onChange={(e) => setEmail(e.target.value)}
+                            value={ic}
+                            placeholder="Masukkan tanpa '-'"
+                            onChange={(e) => setIC(e.target.value)}
                         />
                         </label>
                     </div>
