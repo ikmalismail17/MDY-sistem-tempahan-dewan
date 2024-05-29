@@ -11,7 +11,8 @@ const Profile = () => {
     const pengguna = {
         namaPengguna: "Muhammad Amirul Ikhwan bin Mohd Azmi",
         email: "amirulikhwan123@gmail.com",
-        telefon: "0123456789"
+        telefon: "0123456789",
+        pengenalan: "123456789012"
     };
     const initials = pengguna.namaPengguna.split(' ').map((name,index) => index<2 ? name.charAt(0).toUpperCase():"").join('');
     
@@ -42,6 +43,15 @@ const Profile = () => {
                             {updateProfile?
                             <input type="email" className="input input-sm w-full max-w-xs" value={pengguna.email} /> : 
                             pengguna.email.toLowerCase()
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <th className="border-2">KAD PENGENALAN</th>
+                        <td className="border-2">
+                            {updateProfile ?
+                            <input type="text" className="input input-sm w-full max-w-xs" value={pengguna.pengenalan} /> :
+                            pengguna.pengenalan
                             }
                         </td>
                     </tr>
