@@ -268,7 +268,7 @@ const HallSecDetail = (props) => {
         </div>
         </div>
         </div>
-        <ModalTempahan date={selectedDate} title={props.datadetail.title}/>
+        <ModalTempahan date={selectedDate} name={props.datadetail.title}/>
         <ModalLihatTempahan data={bookData} date={selectedDate} title={props.datadetail.title}/>
         </>
     );
