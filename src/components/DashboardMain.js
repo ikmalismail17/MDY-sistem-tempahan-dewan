@@ -3,6 +3,7 @@ import Paper from './Paper';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../providers/AuthProviders';
 import useFetchData from '../hooks/useFetchData';
+import LogoETD2 from '../assets/images/logoETD2.jpg';
 
 const tempahDewan = [
     {
@@ -194,10 +195,10 @@ const DashboardMain = () => {
             <>
             <div className="hero min-h-screen relative overflow-hidden">
             <div
-                className="absolute top-0 left-0 w-full h-full bg-cover bg-no-repeat bg-fixed"
+                className="w-full h-full bg-cover"
                 style={{
-                backgroundImage: 'url(https://source.unsplash.com/random)',
-                }}
+                    backgroundImage: `url(${LogoETD2})`,
+                    }}
             ></div>
             <div className="hero-overlay absolute top-0 left-0 w-full h-full bg-black opacity-60"></div>
             <div className="hero-content text-center text-neutral-content relative z-10">

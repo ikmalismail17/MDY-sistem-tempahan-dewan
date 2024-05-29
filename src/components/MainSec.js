@@ -3,6 +3,7 @@ import { useState } from "react";
 import HallSec from "./HallSec";
 import React from 'react';
 import Paper from '../components/Paper';
+import LogoETD2 from '../assets/images/logoETD2.jpg';
 
 const MainSec = () => {
     const [imgIndex, setImgIndex] = useState(null);
@@ -22,7 +23,7 @@ const MainSec = () => {
     <div
         className="absolute top-0 left-0 w-full h-full bg-cover bg-no-repeat bg-fixed"
         style={{
-        backgroundImage: 'url(https://source.unsplash.com/random)',
+        backgroundImage: `url(${LogoETD2})`,
         }}
     ></div>
     <div className="hero-overlay absolute top-0 left-0 w-full h-full bg-black opacity-60"></div>

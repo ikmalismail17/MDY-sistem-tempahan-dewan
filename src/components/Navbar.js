@@ -1,4 +1,5 @@
 import Logo from '../assets/images/logoMDY.png';
+import LogoETD from '../assets/images/logoETD.png';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
@@ -15,6 +16,11 @@ const Navbar = () => {
                 </div>
             </div>
             <div className="navbar-center">
+                <div className="avatar">
+                    <div className="w-16 mask mask-squircle" >
+                        <img src={LogoETD} alt='eTD' />
+                    </div>
+                </div>
                 <p className="font-bold text-xl text-amber-400">eTempahDewan</p>
             </div>
             <div className="navbar-end last:pr-2">

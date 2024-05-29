@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import Paper from './Paper';
 import Logo from '../assets/images/logoMDY.png';
+import LogoETD from '../assets/images/logoETD.png';
 import BreadCrumbs from './BreadCrumbs';
 import { ModalLogout } from './Modal';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -41,6 +42,11 @@ const Dashboard = (props) => {
                 </label>
             </div>
             <div className="flex-1 pl-1">
+                <div className="avatar">
+                    <div className="w-16 mask mask-squircle" >
+                        <img src={LogoETD} alt='eTD' />
+                    </div>
+                </div>
                 <p className="font-bold text-xl text-amber-400">eTempahDewan</p>
             </div>
             <div className="flex-none">

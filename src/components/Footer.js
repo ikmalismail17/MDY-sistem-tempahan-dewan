@@ -1,4 +1,5 @@
 import Logo from '../assets/images/logoMDY.png';
+import LogoETD from '../assets/images/logoETD.png';
 
 const Footer = () => {
     let currentYear = new Date().getFullYear();
@@ -7,10 +8,17 @@ const Footer = () => {
         <>
         <footer className="footer footer-center p-10 bg-gray-600 text-primary-content">
         <aside>
+            <div className='flex justify-center'>
             <div className="avatar">
                 <div className="w-20 mask mask-squircle" >
                     <img src={Logo} alt='Majlis Daerah Yan' />
                 </div>
+            </div>
+            <div className="avatar">
+                <div className="w-20 mask mask-squircle" >
+                    <img src={LogoETD} alt='Majlis Daerah Yan' />
+                </div>
+            </div>
             </div>
             <p className="font-bold">
             Majlis Daerah Yan <br/>06900 Yan, Kedah
