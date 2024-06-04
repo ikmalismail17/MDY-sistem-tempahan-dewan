@@ -1,8 +1,39 @@
 import Paper from "./Paper";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const Profile = () => {
     const [updateProfile, setUpdateProfile] = useState(false);
+    // const [profileData, setProfileData] = useState(null);
+    // const [profileEditedData, setProfileEditedData] = useState(null);
+
+    //fetch profile data
+    // const fetchProfileData = async () => { 
+    //     try{
+    //         const res = await axios.get(`http://localhost:3000/api/profile/${id}`);
+    //         console.log(res.data);
+    //         setProfileData(res.data);
+    //         setProfileEditedData(res.data);
+    //     }catch(e){
+    //         console.log(e);
+    //     }
+    // }
+
+    // useEffect(() => {
+    //     setTimeout(()=>{
+    //         fetchProfileData();
+    //     },10000)
+    // },[])
+
+    //put update profile
+    // const updateProfileData = async () => {
+    //     try{
+    //         const res = await axios.put(`http://localhost:3000/api/profile/${id}`,profileEditedData);
+    //         console.log(res.data);
+    //     }catch(e){
+    //         console.log(e);
+    //     }
+    // }
 
     const handleUpdateProfile = () => {
         setUpdateProfile(!updateProfile);
