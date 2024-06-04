@@ -58,7 +58,7 @@ const listDewan = [
 ];
 
 const HallSec = (props) => {
-    // const {data, loading, error} = useFetchData('http://localhost:8080/dewandisplay');
+    // const {data, loading, error} = useFetchData('http://localhost:8080/api/dewandisplay');
     const [hallBool, setHallBool] = useState(false);
     const [showList, setShowList] = useState(true);
     const nodeRef = useRef(null);
