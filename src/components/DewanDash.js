@@ -1,6 +1,8 @@
-import { ModalTambahDewan } from "./Modal";
+import { ModalEditDewan , ModalTambahDewan } from "./Modal";
 import Paper from "./Paper";
 import { useFetchData } from "../hooks/useFetchData";
+import { useState } from "react";
+import useConsole from "../hooks/useConsole";
 
 const listDewan = [
     {
@@ -8,59 +10,25 @@ const listDewan = [
         // img: "https://yan.pimaxis.my/images/Aktiviti/submenu/KEMUDAHAN%20AWAM/GAMBAR%2014-%20DEWAN%20DATO'%20MADI%20YAN.JPG",
         img: "https://fastly.4sqi.net/img/general/width960/LYBRK3IF2DLIAVDAUAI4FDVZOIOVVVEDDPFKIVKJDCVMZQGC.jpg",
         desc: "Dewan Dato' Madi merupakan dewan yang terletak di berdekatan dengan Majlis Daerah Yan.",
-        bookdetails: [
-            {
-                dateBook: "4-18-2024",
-                status: "disahkan",
-            },
-            {
-                dateBook: "5-12-2024",
-                status: "ditempah",
-            },
-            {
-                dateBook: "5-15-2024",
-                status: "disahkan",
-            },
-            {
-                dateBook: "5-29-2024",
-                status: "ditempah",
-            },
-        ]
+        location: " 7, Jalan Pantai Murni, Kampung Pantai Murni, 06900 Yan, Kedah",
     },
     {
         title: "Dewan Lestari",
         img: "https://lh3.googleusercontent.com/p/AF1QipOAVYw-MlVynOz-qb0gLoCTaOGbYf6AjnOUVmU3=s680-w680-h510",
         desc: "Dewan Lestari merupakan dewan yang terletak di kawasan Guar Chempedak.",
-        bookdetails: [
-            {
-                dateBook: "4-28-2024",
-                status: "ditempah",
-            },
-            {
-                dateBook: "5-16-2024",
-                status: "disahkan",
-            },
-            {
-                dateBook: "5-30-2024",
-                status: "ditempah",
-            },
-            {
-                dateBook: "6-3-2024",
-                status: "ditempah",
-            },
-        ]
+        location: "Guar Chempedak, 08300 Guar Chempedak, Kedah",
     },
 ];
 
 const handleAddHall = () => {
     const modal = document.getElementById('modal_tambahan_dewan');
     modal.showModal();
-
 }
 
 const DewanDash = () => {
-    // const { data, loading, error } = useFetchData('http://localhost:8080/dewanproperty');
-
+    // const { data, loading, error } = useFetchData('http://localhost:8080/api/dewanproperty');
+    const [data, setData] = useState([]);
+    console.log("In dewandash:",data)
     return (
         <div>
             <Paper titleDewan="Senarai Dewan" custom={["p-10 bg-slate-200"]} customTitle={["text-2xl"]} titleBool={true}>
@@ -71,7 +39,7 @@ const DewanDash = () => {
             </label>
             <button className="btn btn-ghost tooltip tooltip-top" data-tip="Tambah Dewan" onClick={handleAddHall}>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-                <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 9a.75.75 0 0 0-1.5 0v2.25H9a.75.75 0 0 0 0 1.5h2.25V15a.75.75 0 0 0 1.5 0v-2.25H15a.75.75 0 0 0 0-1.5h-2.25V9Z" clipRule="evenodd" />
+                    <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 9a.75.75 0 0 0-1.5 0v2.25H9a.75.75 0 0 0 0 1.5h2.25V15a.75.75 0 0 0 1.5 0v-2.25H15a.75.75 0 0 0 0-1.5h-2.25V9Z" clipRule="evenodd" />
                 </svg>
             </button>
             </div>
@@ -82,10 +50,23 @@ const DewanDash = () => {
                     >
                         <figure className='w-80 overflow-hidden'><img src={dewan.img} alt={dewan.title} className='w-full h-full object-cover'/></figure>
                         <div className="card-body">
-                        <h2 className="card-title font-bold">{dewan.title.toUpperCase()}</h2>
+                        <h2 className="card-title font-bold mb-3">{dewan.title.toUpperCase()}</h2>
                         <p>{dewan.desc}</p>
+                        <p className="flex gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6 text-red-600">
+                            <path fillRule="evenodd" d="m11.54 22.351.07.04.028.016a.76.76 0 0 0 .723 0l.028-.015.071-.041a16.975 16.975 0 0 0 1.144-.742 19.58 19.58 0 0 0 2.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 0 0-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 0 0 2.682 2.282 16.975 16.975 0 0 0 1.145.742ZM12 13.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" clipRule="evenodd" />
+                            </svg>
+                            {dewan.location}
+                        </p>
                         <div className="card-actions justify-end">
-                            <button className="btn btn-neutral" onClick={() => {}}>
+                            <button className="btn btn-neutral" 
+                            onClick={
+                                    ()=>{
+                                        setData(dewan);
+                                        document.getElementById('modal_edit_dewan').showModal();
+                                        console.log("In function:",dewan)
+                                    }
+                                }>
                                 Kemaskini
                             </button>
                         </div>
@@ -94,6 +75,7 @@ const DewanDash = () => {
                 ))}
             </Paper>
             <ModalTambahDewan />
+            <ModalEditDewan data={data}/>
         </div>
     );
 }

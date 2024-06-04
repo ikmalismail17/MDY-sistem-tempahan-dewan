@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import useConsoleLog from "../hooks/useConsole";
 import { useState } from "react";
 import axios from 'axios';
-import { set } from "rsuite/esm/utils/dateUtils";
 
 export const ModalLogout = () => {
     const navigate = useNavigate();
@@ -36,7 +35,7 @@ export const ModalReject = () => {
 
     const handleReject = () => {
         // try{
-        //     const res = axios.put(`http://localhost:8080/tempahdewan/${props.id}`, {
+        //     const res = axios.put(`http://localhost:8080/api/tempahdewan/${props.id}`, {
         //         status: "Ditolak"
         //     })
         //     console.log(res);
@@ -72,7 +71,7 @@ export const ModalAccept = (props) => {
 
     const handleAccept = () => {
         // try{
-        //     const res = axios.put(`http://localhost:8080/tempahdewan/${props.id}`, {
+        //     const res = axios.put(`http://localhost:8080/api/tempahdewan/${props.id}`, {
         //         status: "Disahkan"
         //     })
         //     console.log(res);
@@ -109,7 +108,7 @@ export const ModalRevert = (props) => {
 
     const handleRevert = () => {
         // try{
-        //     const res = axios.put(`http://localhost:8080/tempahdewan/${props.id}`, {
+        //     const res = axios.put(`http://localhost:8080/api/tempahdewan/${props.id}`, {
         //         status: "Ditempah"
         //     })
         //     console.log(res);
@@ -150,8 +149,9 @@ export const ModalTempahan = (props) => {
     const handleTempahan = () => {
 
         // try{
-        //     const res = await axios.post(`http://localhost:8080/tempahdewan/${props.user_id}`,
+        //     const res = await axios.post(`http://localhost:8080/api/tempahdewan`,
         //         {
+        //             userID: props.user_id,
         //             dewanID: props.dewan_id,
         //             tarikh: props.date,
         //             purpose: purpose,
@@ -289,7 +289,7 @@ export const ModalTambahDewan = () => {
 
     const handleTempahan = () => {
         // try{
-        //     const res = axios.post(`http://localhost:8080/dewanadd`, {
+        //     const res = axios.post(`http://localhost:8080/api/dewanadd`, {
         //         name: name,
         //         address: address,
         //         info: info,
@@ -358,6 +358,130 @@ export const ModalTambahDewan = () => {
                         value={image}
                         className="file-input file-input-bordered w-full max-w-xs" 
                         onChange={(e)=> setImage(e.target.value)}/>
+                    </label>
+                </div>
+            <div className="modal-action">
+            <form method="dialog">
+                <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                <div className="space-x-2">
+                    <button className="btn" onClick={handleTempahan}>Hantar</button>
+                    <button className="btn">Batal</button>
+                </div>
+            </form>
+            </div>
+        </div>
+        </dialog>
+        </>
+    )
+}
+
+export const ModalEditDewan = (props) => {
+    const [dewanData, setDewanData] = useState({
+        name: props.data.title,
+        address: props.data.location,
+        info: props.data.desc,
+        image: props.data.img,
+        tempImg: ""
+    });
+    const navigate = useNavigate();
+    console.log(dewanData)
+
+    const handleTempahan = () => {
+        // try{
+        //     const res = axios.put(`http://localhost:8080/api/dewanupdate/${props.id}`, {
+        //         name: data.name,
+        //         address: data.address,
+        //         info: data.info,
+        //         image: data.tempImg
+        //     })
+        //     console.log(res);
+        //     navigate('/halaman/dewan')
+        // }catch(e){
+        //     throw e;
+        // }
+        navigate('/halaman/dewan')
+    }
+
+    //handle input change
+    const handleInputChange = (e) => { 
+        setDewanData({
+            ...dewanData,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    return (
+        <>
+        <dialog id="modal_edit_dewan" className="modal modal-bottom sm:modal-middle">
+        <div className="modal-box">
+            <h3 className="font-bold text-lg">TAMBAHAN DEWAN</h3>
+            <p className="py-4">Sila isikan kesemua maklumat yang diperlukan.</p>
+                <div className="pb-1">
+                    <label className="form-control">
+                    <div className="label">
+                    NAMA DEWAN
+                    </div>
+                    <input 
+                        type="text" 
+                        placeholder="Masukkan nama dewan"
+                        name="name"
+                        value={dewanData.name}
+                        className="input input-bordered w-full max-w-xs" 
+                        onChange={handleInputChange}/>
+                    </label>
+                </div>
+                <div className="pb-1">
+                    <label className="form-control">
+                    <div className="label">
+                        ALAMAT
+                    </div>
+                    <input 
+                        type="text" 
+                        placeholder="Masukkan alamat dewan" 
+                        name="address"
+                        value={dewanData.address}
+                        className="input input-bordered w-full max-w-xs" 
+                        onChange={handleInputChange}/>
+                    </label>
+                </div>
+                <div className="pb-1">
+                    <label className="form-control">
+                    <div className="label">
+                        INFO DEWAN
+                    </div>
+                    <textarea 
+                        className="textarea textarea-bordered h-24"
+                        name="info" 
+                        value={dewanData.info}
+                        placeholder="Masukkan maklumat dewan" 
+                        onChange={handleInputChange}>
+                    </textarea>
+                    </label>
+                </div>
+                <div className="pb-1">
+                    <label className="form-control">
+                    <div className="label">
+                        GAMBAR DEWAN
+                    </div>
+                    <input 
+                        type="text"
+                        value={dewanData.image}
+                        name="image"
+                        className="input input-bordered w-full max-w-xs" 
+                        disabled/>
+                    </label>
+                </div>
+                <div className="pb-3">
+                    <label className="form-control">
+                    <div className="label">
+                        <span className="label-text">TUKAR GAMBAR DEWAN</span>
+                    </div>
+                    <input 
+                        type="file"
+                        name="tempImg"
+                        value={dewanData.tempImg}
+                        className="file-input file-input-bordered w-full max-w-xs" 
+                        onChange={handleInputChange}/>
                     </label>
                 </div>
             <div className="modal-action">
